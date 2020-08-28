@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="home">
+      <div class ="title">✨ Creative Resistance Workshop 🌈</div>
+      <div class="subtitle">facilitated by <a href="https://roopavasudevan.com" target="_blank">roopa vasudevan</a><br>
+      as part of eyebeam's <a href="https://eyebeam.org/rapidresponse" target="_blank">rapid response<br>
+      for a better digital future</a><br></div>
+    </div>
+    <div class="section" id="s1">
+      <div class="title">We are...</div>
+      <div class="text">
+        <p>who are you? how do you identify yourself? who do you see yourself as? this can range from individual basics regarding age, race, gender, nationality, occupation, socioeconomic status, all the way to more nebulous and inclusive categories spanning everyone who is in this room today.</p>
+      </div>
+    </div>
+    <div class="section" id="s2">
+      <div class="title">In our practices, we...</div>
+      <div class="text">
+        <p>how would you describe your practice? how do you engage with technology? what do you use technology for? what do you use art for?</p>
+      </div>
+    </div>
+    <div class="section" id="s3">
+      <div class="title">We see resistance as...</div>
+      <div class="text">
+        <p>what do you see as the purpose of creative resistance? how do you engage with resistance, critique or subversion in your own practice? what other artists to you draw inspiration from when you think of this?</p>
+      </div>
+    </div>
+    <div class="section" id="s4">
+      <div class="title">We are concerned by...</div>
+      <div class="text">
+        <p>This is a section to come. Will only be visible once the slide advances to this stage of the discussion.</p>
+      </div>
+    </div>
+    <div class="section" id="s5">
+      <div class="title">We refuse...</div>
+      <div class="text">
+        <p>This is a section to come. Will only be visible once the slide advances to this stage of the discussion.</p>
+      </div>
+    </div>
+    <div class="section" id="s6">
+      <div class="title">We want...</div>
+      <div class="text">
+        <p>This is a section to come. Will only be visible once the slide advances to this stage of the discussion.</p>
+      </div>
+    </div>
+    <div class="section" id="s7">
+      <div class="title">We commit to...</div>
+      <div class="text">
+        <p>This is a section to come. Will only be visible once the slide advances to this stage of the discussion.</p>
+      </div>
+    </div>
+    <div id="documentLink">
+      <div class="title"><a href="https://board.net/p/resistance-manifesto">https://board.net/p/resistance-manifesto</a></div>
+      <div class="subtitle">
+        <p>We'll edit this document together!</p>
+      </div>
+    </div>
+    <div id="thanks">
+      <div class ="title">💖 thank you 💖</div>
+      <div class="subtitle"><a href="https://roopavasudevan.com">roopavasudevan.com</a><br>
+      <a href="mailto:roopa.vasudevan@gmail.com">roopa.vasudevan@gmail.com</a></div>
+      <div id="postscript">If you would like to lead this workshop yourself, you can download the materials from here: <a href="https://github.com/strategictransparency">https://github.com/strategictransparency</a><br>
+      There are only two requirements: 1) compensate your participants somehow, and 2) contribute your final manifestos to the <a href="https://github.com/strategictransparency">github repository</a> when they're done.</div>
+    </div>
+    <div id="next"><button class="button" onclick="advanceSlide()" type="button" name="button">>>></button></div>
+    <div id="homeButton"><button class="button" onclick="returnToStart()" type="button" name="button">Return to Start</button></div>
+
+    <script type="text/javascript">
+      var state = 0;
+      var padding = 2;
+      var originals = ['We are...', 'In our practices, we...', 'We see resistance as...', 'We are concerned by...', 'We refuse...', 'We want...', 'We commit to...'];
+      var replacements = ['I am...', 'In my practice, I...', 'I see resistance as...', 'I am concerned by...', 'I refuse...', 'I want...', 'I commit to...'];
+
+      function advanceSlide() {
+        state++;
+        var sections = document.getElementsByClassName('section');
+
+        if (state === 1) {
+          document.getElementById('home').style.display = 'none';
+          for (var i = 0; i < sections.length; i++) {
+            sections[i].style.display = "block";
+          }
+        } else if (state > 1 && state <= 8) {
+          stateText = 's' + (state - 1);
+          console.log(stateText);
+          for (var i = 0; i < sections.length; i++) {
+            if (sections[i].id != stateText) {
+              sections[i].style.display = 'none';
+            } else if (state > 1) {
+              // sections[i-1].style.display = 'block';
+              padding += 2;
+              // console.log(padding);
+              var toReplace = sections[i].children[0].innerHTML;
+              var overallIndex = originals.indexOf(toReplace);
+              sections[i].children[0].innerHTML = replacements[overallIndex];
+              sections[i].style.display = 'block';
+              sections[i].style.paddingTop = '' + padding + '%';
+              var children = sections[i].children;
+              for (j = 0; j < children.length; j++) {
+                children[j].style.display = "block";
+              }
+            }
+          }
+        } else if (state === 9) {
+          for (var i = 0; i < sections.length; i++) {
+            sections[i].style.display = "none";
+          }
+          document.getElementById('documentLink').style.display = 'block';
+        } else {
+          document.getElementById('documentLink').style.display = 'none';
+          document.getElementById('next').style.display = 'none';
+          document.getElementById('thanks').style.display = 'block';
+          document.getElementById('homeButton').style.display = 'block';
+        }
+      }
+
+      function returnToStart() {
+        state = 0;
+        document.getElementById('home').style.display = 'block';
+        document.getElementById('next').style.display = 'block';
+        document.getElementById('thanks').style.display = 'none';
+        document.getElementById('homeButton').style.display = 'none';
+      }
+
+    </script>
+  </body>
+</html>
