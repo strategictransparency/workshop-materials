@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Creative Resistance Workshop Prompts</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -15,7 +15,7 @@
     <div class="section" id="s1">
       <div class="title">We are...</div>
       <div class="text">
-        <p>who are you? how do you identify yourself? who do you see yourself as? this can range from individual basics regarding age, race, gender, nationality, occupation, socioeconomic status, all the way to more nebulous and inclusive categories spanning everyone who is in this room today.</p>
+        <p>who are you? how do you identify yourself? who do you see yourself as? this can range from individual basics regarding age, race, gender, nationality, occupation, ability, and socioeconomic status, all the way to more nebulous, inclusive and imaginative descriptors.</p>
       </div>
     </div>
     <div class="section" id="s2">
@@ -79,11 +79,16 @@
       function advanceSlide() {
         state++;
         var sections = document.getElementsByClassName('section');
+        var text = document.getElementsByClassName('text');
+
+        // console.log(text);
 
         if (state === 1) {
           document.getElementById('home').style.display = 'none';
           for (var i = 0; i < sections.length; i++) {
+            // console.log(sections[i].children[0]);
             sections[i].style.display = "block";
+            text[i].style.display = "none";
           }
         } else if (state > 1 && state <= 8) {
           stateText = 's' + (state - 1);
@@ -121,10 +126,18 @@
 
       function returnToStart() {
         state = 0;
+        padding = 2;
+        var sections = document.getElementsByClassName('section');
+
         document.getElementById('home').style.display = 'block';
         document.getElementById('next').style.display = 'block';
         document.getElementById('thanks').style.display = 'none';
         document.getElementById('homeButton').style.display = 'none';
+
+        for (var i = 0; i < sections.length; i++) {
+          sections[i].style.paddingTop = '0%';
+          sections[i].children[0].innerHTML = originals[i];
+        }
 
       }
 
